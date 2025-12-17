@@ -1,6 +1,7 @@
 from animatronic import Animatronic
 from digraph import DiGraph
 from pizza import Pizzeria
+import datetime
 
 adj = {
     "1A": ["1B", "5"],
@@ -46,6 +47,7 @@ three_movements_won = 0
 fastest = 0
 num_trials = int(input("How many trials: "))
 num_movements = 10
+time_before = datetime.datetime.now()
 for i in range(num_trials):
     # reset
     fnaf.reset()
@@ -71,10 +73,10 @@ for i in range(num_trials):
             successes += 1
             break
     results.append({"Trial": i+1, "Time to Door": time_to_door, "3 Movements in a Row": made_three_row})
-
+runtime = datetime.datetime.now() - time_before
 # process data
-print(f"Ran a total of {num_trials} trials.")
-print(f"There were {successes} successes, with a probability of {successes/num_trials * 100:.4f}%.")
+print(f"Ran a total of {num_trials} trials in {runtime.total_seconds()}s.")
+print(f"Bonnie made it to the door {successes} times, with a probability of {successes/num_trials * 100:.4f}%.")
 print(f"Of all trials, Bonnie made 3 or more movements in a row {three_movements_any} times, for a probability of {three_movements_any/num_trials * 100:.4f}%.")
-print(f"Of all successes, Bonnie made 3 or more movements {three_movements_won} times. This was {three_movements_won/successes * 100:.4f}% of all successes, and {three_movements_won/num_trials * 100:.4f}% of all trials.")
-print(f"Of all successes, Bonnie made it to the door as fast as possible {fastest} times. This was {fastest/successes * 100:.4f}% of all successes, and {fastest/num_trials * 100:.4f}% of all trials.")
+print(f"Of all times Bonnie made it to the door, he made 3 or more movements {three_movements_won} times. This was {three_movements_won/successes * 100:.4f}% of all door movements, and {three_movements_won/num_trials * 100:.4f}% of all trials.")
+print(f"Bonus: Of all times Bonnie made it to the door, he moved as fast as possible {fastest} times. This was {fastest/successes * 100:.4f}% of all door movements, and {fastest/num_trials * 100:.4f}% of all trials.")
