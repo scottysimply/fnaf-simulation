@@ -46,6 +46,8 @@ successes = 0
 three_movements_won = 0
 fastest = 0
 num_trials = int(input("How many trials: "))
+if num_trials == 0:
+    exit()
 num_movements = 10
 time_before = datetime.datetime.now()
 for i in range(num_trials):
@@ -78,5 +80,6 @@ runtime = datetime.datetime.now() - time_before
 print(f"Ran a total of {num_trials} trials in {runtime.total_seconds()}s.")
 print(f"Bonnie made it to the door {successes} times, with a probability of {successes/num_trials * 100:.4f}%.")
 print(f"Of all trials, Bonnie made 3 or more movements in a row {three_movements_any} times, for a probability of {three_movements_any/num_trials * 100:.4f}%.")
-print(f"Of all times Bonnie made it to the door, he made 3 or more movements {three_movements_won} times. This was {three_movements_won/successes * 100:.4f}% of all door movements, and {three_movements_won/num_trials * 100:.4f}% of all trials.")
-print(f"Bonus: Of all times Bonnie made it to the door, he moved as fast as possible {fastest} times. This was {fastest/successes * 100:.4f}% of all door movements, and {fastest/num_trials * 100:.4f}% of all trials.")
+if successes > 0:
+    print(f"Of all times Bonnie made it to the door, he made 3 or more movements {three_movements_won} times. This was {three_movements_won/successes * 100:.4f}% of all door movements, and {three_movements_won/num_trials * 100:.4f}% of all trials.")
+    print(f"Bonus: Of all times Bonnie made it to the door, he moved as fast as possible {fastest} times. This was {fastest/successes * 100:.4f}% of all door movements, and {fastest/num_trials * 100:.4f}% of all trials.")
